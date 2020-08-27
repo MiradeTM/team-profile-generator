@@ -19,7 +19,7 @@ const inquireType = () => {
     inquirer.prompt({
         type: "list",
         message: "What type of employee would you like to add?",
-        choices: ["intern", "Engineer", "Manager"],
+        choices: ["Intern", "Engineer", "Manager"],
         name: "type"
     });
 }
