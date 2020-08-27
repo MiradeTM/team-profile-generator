@@ -16,12 +16,13 @@ const render = require("./lib/htmlRenderer");
 const employees = [];
 
 const inquireType = () => {
-    inquirer.prompt({
+    return inquirer.prompt({
         type: "list",
         message: "What type of employee would you like to add?",
         choices: ["Intern", "Engineer", "Manager"],
         name: "type"
     });
+    
 }
 
 const createEmployee = async ({type, id}) => {
@@ -91,8 +92,8 @@ const createEmployee = async ({type, id}) => {
 const init = async () => {
     let entering = true;
     do{
-        const{type} = await inquireType();
-        const id = employee.length + 1;
+        const { type } = await inquireType();
+        const id = employees.length + 1;
         const currentEmployee = await createEmployee({type: type, id: id});
         const {addMore} = await inquirer.prompt([{
             type: "list",
@@ -104,8 +105,7 @@ const init = async () => {
     } while (entering);
     
     await writeFileAsync("./output/team.html", render(employees));
-
-    console.log("Sucessfully started!");
+    console.log("Successfully started!");
 }
 
 init();
